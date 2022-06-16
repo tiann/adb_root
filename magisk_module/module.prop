@@ -1,0 +1,7 @@
+id=adb_root
+name=adb root
+version=v1
+versionCode=1
+author=weishu
+description=Enable adb root on production devices
+minMagisk=21000
