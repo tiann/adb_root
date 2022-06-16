@@ -6,12 +6,12 @@ Enable adb root in production build device for Android 11+.
 
 Install it as a Magisk module
 
-> :warning: **USE AS YOUR OWN RISK!!!**
+> :warning: **USE AT YOUR OWN RISK!!!**
 
 ## Build
 
 ```sh
-./build
+./build.sh
 ```
 
 ## Credits
