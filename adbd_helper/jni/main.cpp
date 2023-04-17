@@ -7,5 +7,11 @@ int main(int argc, char** argv) {
         const_cast<char*>("LD_PRELOAD=/system/lib64/libadb_root_helper.so"),
     };
 
-    return execve(real_adbd, argv, envp);
+    // u:r:adbd:s0 is restricted
+    char* const new_argv[] = { 
+        argv[0],
+        const_cast<char*>("--root_seclabel=u:r:magisk:s0")
+    };
+
+    return execve(real_adbd, new_argv, envp);
 }
