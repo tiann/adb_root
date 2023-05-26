@@ -1,0 +1,29 @@
+name: Android NDK CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r21e
+        
+    - name: Build adb_root
+      run: ./build.sh
+    
+    - uses: actions/upload-artifact@main
+      with:
+       name: adb_root
+       path: |
+        magisk_module/*
+        !magisk_module/*.DS_Store
