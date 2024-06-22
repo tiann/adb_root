@@ -1,4 +1,4 @@
-#! /system/bin/sh
+#!/system/bin/sh
 
 ADBD_APEX="/apex/com.android.adbd/"
 
@@ -12,15 +12,15 @@ install() {
 
     if [ -e $SYSTEM_ADBD_PATH_REAL ];then
         ui_print "backup $SYSTEM_ADBD_PATH_REAL.."
-        cp -f $SYSTEM_ADBD_PATH_REAL $MOD_ADBD_PATH_REAL
+        cp -f $SYSTEM_ADBD_PATH_REAL "$MOD_ADBD_PATH_REAL"
     else
         ui_print "backup $SYSTEM_ADBD_PATH.."
-        cp -f $SYSTEM_ADBD_PATH $MOD_ADBD_PATH_REAL
+        cp -f $SYSTEM_ADBD_PATH "$MOD_ADBD_PATH_REAL"
     fi
 
     ui_print "set permissions.."
-    chmod +x $MOD_ADBD_PATH
-    chcon --reference=$SYSTEM_ADBD_PATH $MOD_ADBD_PATH $MOD_ADBD_PATH_REAL
+    chmod +x "$MOD_ADBD_PATH"
+    chcon --reference=$SYSTEM_ADBD_PATH "$MOD_ADBD_PATH" "$MOD_ADBD_PATH_REAL"
 }
 
 if [ -d "$ADBD_APEX" ]; then
@@ -28,7 +28,7 @@ if [ -d "$ADBD_APEX" ]; then
 
     install
 else
-    echo "ro.debuggable=1" >> $MODPATH/system.prop
+    echo "ro.debuggable=1" >> "$MODPATH"/system.prop
 fi
-    
+
 ui_print "adb_root installed"
