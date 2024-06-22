@@ -4,10 +4,10 @@ MODDIR=${0%/*}
 max_wait=180
 interval=1
 BOOT_COMPLETED=false
-while [[ "$max_wait" -gt 0 ]]; do
+while [ $max_wait -gt 0 ]; do
   pidof adbd
   ret=$0
-  if [ $ret -eq 0 ];then
+  if [ "$ret" -eq 0 ];then
     BOOT_COMPLETED=true
     break
   fi
@@ -16,5 +16,5 @@ while [[ "$max_wait" -gt 0 ]]; do
 done
 
 if [ "$BOOT_COMPLETED" = "false" ];then
-    touch $MODDIR/disable
+    touch "$MODDIR"/disable
 fi
