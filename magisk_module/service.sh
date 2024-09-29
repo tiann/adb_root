@@ -6,7 +6,7 @@ interval=1
 BOOT_COMPLETED=false
 while [ $max_wait -gt 0 ]; do
   pidof adbd
-  ret=$0
+  ret=$?
   if [ "$ret" -eq 0 ];then
     BOOT_COMPLETED=true
     break
