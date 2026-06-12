@@ -1,7 +1,12 @@
 #include <string>
+#include <cstdlib>
 #include <dlfcn.h>
 
 __BEGIN_DECLS
+__attribute__((constructor)) static void stop_preload_leak() {
+    (void)unsetenv("LD_PRELOAD");
+}
+
 int __android_log_is_debuggable() { return 1; }
 
 int property_get(const char* key, char* value, const char* default_value) {
